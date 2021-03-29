@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>基础</title>
+</head>
+<body>
+<div id="app" class="app">
+    <h3>一、插值</h3>
+
+    <p>{{ message }}</p>
+
+    <div>
+        {{ user.name }}
+        {{ user.mobileNo }}
+    </div>
+
+    <div>
+        <ul>
+            <li>{{ list[0] }}</li>
+            <li>{{ list[1] }}</li>
+            <li>{{ list[2] }}</li>
+        </ul>
+    </div>
+
+    <h3>二、Vue指令</h3>
+
+    <p v-text="message + '222'"></p>
+
+    <p v-html="htmlMessage"></p>
+
+    <input type="button" value="v-on" v-on:click="doIt">
+    <input type="button" value="v-on" @click="doIt">
+    <input type="button" value="v-on" @dblclick="doIt">
+
+    <div @click="add">{{ message }}</div>
+
+    <div @click="changeShow" v-show="isShow">v-show</div>
+
+    <h3>三、实例</h3>
+
+    <div>
+        <button @click="subNum">
+            -
+        </button>
+        <span>{{ num }}</span>
+        <button @click="addNum">
+            +
+        </button>
+    </div>
+
+    <div>
+        <section>
+            <header>
+                <h1>小强记事本</h1>
+                <input type="text" autofocus="autofocus" placeholder="请输入任务">
+            </header>
+        </section>
+    </div>
+</div>
+
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<script>
+    var app = new Vue({
+        el: "#app",
+        // el: ".app",
+        // el: "div",
+        data: {
+            message: "你好啊",
+            user: {
+                name: "一串星河",
+                mobileNo: "18652635267"
+            },
+            list: ["lfq111", "lfq222", "lfq333"],
+            htmlMessage: "<a href='#'>v-html</a>",
+            num: 1,
+            isShow: true
+        },
+        methods: {
+            doIt: function() {
+                alert('do it!');
+            },
+            add: function() {
+                console.log(this.message);
+                this.message += "哈哈";
+            },
+            addNum: function() {
+                if(this.num < 10) {
+                    this.num++;
+                } else {
+                    alert("已经最大了");
+                }
+            },
+            subNum: function() {
+                if(this.num > 0) {
+                    this.num--;
+                    
+                } else {
+                    alert("已经最小了");
+                }
+            },
+            changeShow: function() {
+                this.isShow = !this.isShow;
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+// 颜色
+.m-color-teal {
+  color: #35b378;
+}
+.m-color-white {
+  color: white;
+}
+.m-color-red {
+  color: red;
+}
+.m-color-gray {
+  color: #6E7173;
+}
+.m-color-black {
+  //color: #171717;
+  color: #000000;
+}
+
+// 背景色
+.m-background-danger {
+  background: #F56C6C;
+}
+.m-background-transparent {
+  background: rgba(255, 255, 255, 0);
+}
+.m-bg-transparent-half {
+  background: rgba(255, 255, 255, 0.5);
+}
+.m-background-card {
+  background: rgba(255, 255, 255, 0.5);
+}

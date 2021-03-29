@@ -1,0 +1,105 @@
+// 尺寸设计 mini：超小 small：小 默认：没有后缀 big：大 large：超大
+
+// font-size
+.m-font-size-mini {
+  font-size: 0.5em;
+}
+.m-font-size-small {
+  font-size: 0.75em;
+}
+.m-font-size {
+  font-size: 1em;
+}
+.m-font-size-big {
+  font-size: 1.25em;
+}
+.m-text-size-large {
+  font-size: 1.5em;
+}
+
+// padding
+.m-padding-mini {
+  padding: 0.25em;
+}
+.m-padding-small {
+  padding: 0.5em;
+}
+.m-padding {
+  padding: 1em;
+}
+.m-padding-big {
+  padding: 2em;
+}
+.m-padding-large {
+  padding: 4em;
+}
+
+// margin-top
+.m-margin-top-small {
+  margin-top: 0.5em;
+}
+.m-margin-top {
+  margin-top: 1em;
+}
+.m-margin-top-big {
+  margin-top: 2em;
+}
+.m-margin-top-large {
+  margin-top: 4em;
+}
+
+// margin-bottom
+.m-margin-bottom-small {
+  margin-bottom: 0.5em;
+}
+.m-margin-bottom {
+  margin-bottom: 1em;
+}
+.m-margin-bottom-big {
+  margin-bottom: 2em;
+}
+.m-margin-bottom-large {
+  margin-bottom: 4em;
+}
+
+// margin
+.m-margin-mini {
+  margin: 0.25em;
+}
+.m-margin {
+  margin: 1em;
+}
+
+// margin-left
+.m-margin-left-mini {
+  margin-left: 0.25em;
+}
+.m-margin-left-small {
+  margin-left: 0.5em;
+}
+.m-margin-left {
+  margin-left: 1em;
+}
+.m-margin-left-big {
+  margin-left: 2em;
+}
+.m-margin-left-large {
+  margin-left: 4em;
+}
+
+// margin-right
+.m-margin-right-mini {
+  margin-right: 0.25em;
+}
+.m-margin-right-small {
+  margin-right: 0.5em;
+}
+.m-margin-right {
+  margin-right: 1em;
+}
+
+.m-ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

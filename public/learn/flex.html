@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html, body {
+            height: 100%;
+        }
+        .parent{
+            height: 100vh;
+            display: flex;
+            /*flex-direction: column;*/
+        }
+        .child{
+            flex:1;
+            height: 100px;
+        }
+        /*.child + .child{*/
+        /*    margin-left: 20px;*/
+        /*}*/
+    </style>
+</head>
+<body>
+<div class="parent" style="background-color: lightgrey;">
+    <div class="child" style="background-color: lightblue; overflow: auto">圣诞节啊<br><br><br><br><br><br><br><br>地方就是看<br><br><br><br>水电费</div>
+    <div class="child" style="background-color: lightgreen;">2</div>
+    <div class="child" style="background-color: lightsalmon;">3</div>
+    <div class="child" style="background-color: pink;">4</div>
+</div>
+</body>
+</html>

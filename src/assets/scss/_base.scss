@@ -1,0 +1,145 @@
+body {
+  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #303133;
+  background-color: #fff;
+}
+
+img {
+  vertical-align: middle;
+}
+
+//文本样式
+.m-text-title {
+  color: #000;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.m-text-title-big {
+  margin-top: 30px;
+  margin-bottom: 15px;
+  padding: 0px;
+  font-weight: bold;
+  color: black;
+  font-size: 24px;
+}
+
+.vertical {
+  height: 100px;
+  line-height: 100px; /*值等于元素高度的值*/
+}
+
+.m-vertical-center-father {
+  position: relative;
+}
+
+.m-vertical-center-son {
+  position: absolute;
+  top: 50%;
+  left: 35%;
+  transform: translate(-50%, -50%) /*单独设置transform:translateY(-50%);*/
+}
+
+.m-text-bold {
+  font-weight: bold;
+}
+
+.m-text-decoration {
+  text-decoration: line-through;
+}
+
+
+//排版
+.m-flex {
+  justify-content: space-between;
+  align-items: center;
+  display:flex;
+}
+.m-text-align-right {
+  text-align: right;
+}
+
+.m-text-align-center {
+  text-align: center;
+}
+
+//.m-container {
+//  max-width: 72em !important;
+//  margin: auto !important;
+//  min-height: 52em !important;
+//}
+
+.m-width-fill {
+  width: 100%;
+}
+
+.m-float-left {
+  float: left;
+}
+
+.m-float-right {
+  float: right;
+}
+
+.m-float-center {
+  position: fixed;
+  margin: auto;
+}
+
+.m-float-bottom {
+  float: bottom;
+}
+
+.m-right-top {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.m-teal-big {
+  color: #00B5AD !important;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.m-overflow {
+  overflow: auto;
+  height: 800px;
+}
+
+//.m-background-body {
+//  background: rgba(255, 255, 255, 0.5);
+//  padding: 1em;
+//}
+
+.m-item-select {
+  color: #00B5AD;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.m-cursor {
+  cursor: pointer
+}
+
+//.m-bg-transparent {
+//  background: rgba(255, 255, 255, 0.5);
+//}
+
+.m-divider {
+  padding: 0 20px 0;
+  margin: 20px 0;
+  line-height: 1px;
+  border-left: 200px solid #ddd;
+  border-right: 200px solid #ddd;
+  text-align: center;
+}
+
+.m-flex-parent {
+  display: flex;
+}
+.m-flex-child {
+  flex: 1;
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <span>Message: {{ msg }}</span><br>
+    <span v-once>这个将不会改变: {{ msg }}</span>
+
+    <p>Using mustaches: {{ rawHtml }}</p>
+    <p>Using v-html directive: <span v-html="rawHtml"></span></p>
+</div>
+
+<div v-bind:id="dynamicId"></div>
+
+<button v-bind:disabled="isButtonDisabled">Button</button>
+
+<script type="text/javascript">
+    let vm = new Vue({
+        el: "#app",
+        data: {
+            msg: "hi vue",
+            isButtonDisabled: false
+        }
+    });
+</script>
+</body>
+</html>
