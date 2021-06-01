@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Main :menuIndex="'3'"></Main>
+        <Main :menuIndex="'2'"></Main>
 
         <div class="todo-new">
             <div v-if="isMobile" class="layout-2">

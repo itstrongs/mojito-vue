@@ -67,13 +67,6 @@
                         isOutsideChain: false
                     },
                     {
-                        name: 'TODO',
-                        toolUrl: '/todo',
-                        operation: "打开",
-                        desc: '待办、计划',
-                        isOutsideChain: false
-                    },
-                    {
                         name: 'Jenkins',
                         toolUrl: 'http://www.liufengqiang.com:8088',
                         operation: "打开",

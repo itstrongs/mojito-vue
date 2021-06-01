@@ -66,7 +66,7 @@
                 menu: [
                     {id: '0', name: '开发'},
                     {id: '1', name: '生活'},
-                    {id: '2', name: '杂文'},
+                    {id: '2', name: 'todo'},
                     {id: '3', name: '其他'},
                 ],
                 isMobile: false,
@@ -91,7 +91,9 @@
                 } else {
                     url = this.$route.params.userId ? '/' + this.$route.params.userId : '';
                 }
-                if (key === '3') {
+                if (key === '2') {
+                    this.$router.push({path: `${url}/todo`})
+                } else if (key === '3') {
                     this.$router.push({path: `${url}/tools`})
                 } else {
                     this.$router.push({path: `${url}/note`, query: {type: key}});
