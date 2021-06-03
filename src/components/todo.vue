@@ -9,9 +9,9 @@
                         <i class="el-icon-top m-margin-right" @click="setTop()"></i>
                     </el-tooltip>
 
-                    <el-tooltip class="item" effect="dark" content="完成" placement="bottom">
-                        <i class="el-icon-finished m-margin-right" @click="updateFinish()"></i>
-                    </el-tooltip>
+<!--                    <el-tooltip class="item" effect="dark" content="完成" placement="bottom">-->
+<!--                        <i class="el-icon-finished m-margin-right" @click="updateFinish()"></i>-->
+<!--                    </el-tooltip>-->
 
                     <el-tooltip class="item" effect="dark" content="删除" placement="bottom">
                         <i class="el-icon-delete m-margin-right" @click="deleteTodo()"></i>
@@ -73,8 +73,7 @@
 
                     <ul>
                         <li v-for="(todo, index2) in todoList" :key="todo"
-                            @click="changeSecondIndex(index2)"
-                            v-bind:class="{ 'select-bg-1' : secondIndex === index2 }">
+                            @click="changeSecondIndex(index2)" :class="{ 'select-bg-1' : secondIndex === index2 }">
                             <p class="m-text-bold" v-bind:class="{'m-text-decoration': todo.isFinish }">{{ todo.title }}</p>
 
                             <div class="m-font-size-small">
@@ -92,7 +91,31 @@
                         </el-tooltip>
                     </div>
 
-                    <textarea autofocus="autofocus" v-model="currentContent" class="test-content" @blur.prevent="lostFocus()"></textarea>
+                    <div class="m-padding">
+                        <div class="m-flex-parent-center">
+                            <span>标题：</span>
+                            <input type="text" placeholder="标题..." class="todo-input m-flex-child" v-model="updateTodo.title">
+                            <span>分类：</span>
+                            <input type="text" placeholder="分类..." class="todo-input m-flex-child" v-model="updateTodo.category">
+                        </div>
+
+                        <div class="m-flex-parent-center">
+                            <span>描述：</span>
+                            <input type="text" placeholder="描述..." class="todo-input m-flex-child" v-model="updateTodo.description">
+                        </div>
+
+                        <div class="m-flex-parent-center">
+                            <span>新增：</span>
+                            <input type="text" placeholder="todos..." class="todo-input m-flex-child" v-model="updateTodo.todoPlanItem">
+                            <el-button type="primary" icon="el-icon-plus" circle class="m-margin-left" @click="saveTodo()"></el-button>
+                        </div>
+
+                        <div v-for="item in currentPlanItem.todoPlanItems" :key="item" class="m-margin-top-small m-flex-parent-center select-bg-1 m-padding">
+                            <i class="m-cursor" :class="item.isComplete ? 'el-icon-check' : 'el-icon-remove-outline'" @click="updateFinish(item.id)"></i>
+                            <span class="m-flex-child m-margin-left" :class="{'m-text-decoration' : item.isComplete}">{{ item.content }}</span>
+                            <i class="el-icon-close m-cursor" @click="deleteTodoItem(item.id)"></i>
+                        </div>
+                    </div>
                 </el-col>
             </el-row>
         </div>
@@ -113,8 +136,16 @@
                 todoList: [],
                 // 详情
                 currentContent: '',
+                // 计划项列表
+                currentPlanItem: [],
                 // 更新
-                updateTodo: {},
+                updateTodo: {
+                    "id": 0,
+                    "title": "",
+                    "category": "",
+                    "description": "",
+                    "todoPlanItem": "",
+                },
 
                 oneIndex: 0,
                 secondIndex: 0,
@@ -145,6 +176,12 @@
                         this.todoList = [];
                     }
                     this.currentContent = this.todoList.length > 0 ? this.todoList[0].content : '';
+                    this.currentPlanItem = this.todoList[0];
+
+                    this.updateTodo.id = this.currentPlanItem.id;
+                    this.updateTodo.title = this.currentPlanItem.title;
+                    this.updateTodo.category = this.currentPlanItem.category;
+                    this.updateTodo.description = this.currentPlanItem.description;
                 }.bind(this));
             },
             changeOneIndex(index) {
@@ -158,29 +195,33 @@
             changeSecondIndex(index) {
                 this.secondIndex = index;
                 this.currentContent = this.todoList[index].content;
-            },
-            lostFocus() {
-                console.log("失去焦点...", this.currentContent);
-                // 原始长度
-                let sourceLength = 0;
-                if (this.todoCategory[this.oneIndex].todos) {
-                    sourceLength = this.todoCategory[this.oneIndex].todos[this.secondIndex].content.length;
-                }
-                if (this.currentContent.length === 0 || this.currentContent.length === sourceLength) {
-                    console.log("内容没更新");
-                } else {
-                    if (this.todoList) {
-                        this.updateTodo.id = this.todoList[this.secondIndex].id;
-                    }
-                    this.updateTodo.content = this.currentContent;
 
-                    this.updateTodo.categoryId = this.todoCategory[this.oneIndex].id;
-                    this.saveTodo();
-                }
+                this.updateTodo.id = this.currentPlanItem.id;
+                this.updateTodo.title = this.currentPlanItem.title;
+                this.updateTodo.category = this.currentPlanItem.category;
+                this.updateTodo.description = this.currentPlanItem.description;
             },
-            updateFinish() {
+            // lostFocus() {
+            //     console.log("失去焦点...", this.currentContent);
+            //     // 原始长度
+            //     let sourceLength = 0;
+            //     if (this.todoCategory[this.oneIndex].todos) {
+            //         sourceLength = this.todoCategory[this.oneIndex].todos[this.secondIndex].content.length;
+            //     }
+            //     if (this.currentContent.length === 0 || this.currentContent.length === sourceLength) {
+            //         console.log("内容没更新");
+            //     } else {
+            //         if (this.todoList) {
+            //             this.updateTodo.id = this.todoList[this.secondIndex].id;
+            //         }
+            //         this.updateTodo.content = this.currentContent;
+            //
+            //         this.updateTodo.categoryId = this.todoCategory[this.oneIndex].id;
+            //     }
+            // },
+            updateFinish(id) {
                 this.$http({
-                    url: '/todo-plan/' + this.todoList[this.secondIndex].id + "/finish",
+                    url: '/todo-plan/item/' + id + "/is-complete",
                     method: 'put',
                 }).then(res => {
                     console.log("更新成功" + res.data);
@@ -190,6 +231,15 @@
             deleteTodo() {
                 this.$http({
                     url: '/todo-plan/' + this.todoList[this.secondIndex].id,
+                    method: 'delete',
+                }).then(res => {
+                    console.log("删除成功" + res.data);
+                    window.location.reload();
+                });
+            },
+            deleteTodoItem(id) {
+                this.$http({
+                    url: '/todo-plan/item/' + id,
                     method: 'delete',
                 }).then(res => {
                     console.log("删除成功" + res.data);
@@ -328,5 +378,13 @@
     }
     .todo-item {
         padding: 0.5em 1em;
+    }
+    .todo-input {
+        background: transparent;
+        color: #d0e4fe;
+        outline: none;
+        border: none;
+        padding: 1em;
+        width: 100%;
     }
 </style>

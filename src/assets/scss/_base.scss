@@ -140,6 +140,12 @@ img {
 .m-flex-parent {
   display: flex;
 }
+
+.m-flex-parent-center {
+  display: flex;
+  align-items: center;
+}
+
 .m-flex-child {
   flex: 1;
 }

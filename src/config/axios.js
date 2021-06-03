@@ -3,8 +3,8 @@ import {Message} from 'element-ui'
 
 // config 配置
 axios.defaults.timeout = 60 * 1000;
-axios.defaults.baseURL = 'http://212.64.64.117:8086';
-// axios.defaults.baseURL = 'http://127.0.0.1:8086';
+// axios.defaults.baseURL = 'http://212.64.64.117:8086';
+axios.defaults.baseURL = 'http://127.0.0.1:8086';
 
 // http request 拦截器
 axios.interceptors.request.use(config => {
