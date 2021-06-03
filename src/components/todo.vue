@@ -78,7 +78,7 @@
 
                             <div class="m-font-size-small">
                                 <span>{{ todo.createdAt }}</span>
-                                <span class="m-margin-left">{{ todo.describe }}</span>
+                                <span class="m-margin-left">{{ todo.description }}</span>
                             </div>
                         </li>
                     </ul>
@@ -110,7 +110,7 @@
                             <el-button type="primary" icon="el-icon-plus" circle class="m-margin-left" @click="saveTodo()"></el-button>
                         </div>
 
-                        <div v-for="item in currentPlanItem.todoPlanItems" :key="item" class="m-margin-top-small m-flex-parent-center select-bg-1 m-padding">
+                        <div v-for="item in planItemList.todoPlanItems" :key="item" class="m-margin-top-small m-flex-parent-center select-bg-1 m-padding">
                             <i class="m-cursor" :class="item.isComplete ? 'el-icon-check' : 'el-icon-remove-outline'" @click="updateFinish(item.id)"></i>
                             <span class="m-flex-child m-margin-left" :class="{'m-text-decoration' : item.isComplete}">{{ item.content }}</span>
                             <i class="el-icon-close m-cursor" @click="deleteTodoItem(item.id)"></i>
@@ -137,7 +137,7 @@
                 // 详情
                 currentContent: '',
                 // 计划项列表
-                currentPlanItem: [],
+                planItemList: [],
                 // 更新
                 updateTodo: {
                     "id": 0,
@@ -176,12 +176,12 @@
                         this.todoList = [];
                     }
                     this.currentContent = this.todoList.length > 0 ? this.todoList[0].content : '';
-                    this.currentPlanItem = this.todoList[0];
+                    this.planItemList = this.todoList[0];
 
-                    this.updateTodo.id = this.currentPlanItem.id;
-                    this.updateTodo.title = this.currentPlanItem.title;
-                    this.updateTodo.category = this.currentPlanItem.category;
-                    this.updateTodo.description = this.currentPlanItem.description;
+                    this.updateTodo.id = this.planItemList.id;
+                    this.updateTodo.title = this.planItemList.title;
+                    this.updateTodo.category = this.planItemList.category;
+                    this.updateTodo.description = this.planItemList.description;
                 }.bind(this));
             },
             changeOneIndex(index) {
@@ -195,30 +195,14 @@
             changeSecondIndex(index) {
                 this.secondIndex = index;
                 this.currentContent = this.todoList[index].content;
+                console.log("changeSecondIndex==>"+index);
 
-                this.updateTodo.id = this.currentPlanItem.id;
-                this.updateTodo.title = this.currentPlanItem.title;
-                this.updateTodo.category = this.currentPlanItem.category;
-                this.updateTodo.description = this.currentPlanItem.description;
+                this.planItemList = this.todoList[index];
+                this.updateTodo.id = this.planItemList.id;
+                this.updateTodo.title = this.planItemList.title;
+                this.updateTodo.category = this.planItemList.category;
+                this.updateTodo.description = this.planItemList.description;
             },
-            // lostFocus() {
-            //     console.log("失去焦点...", this.currentContent);
-            //     // 原始长度
-            //     let sourceLength = 0;
-            //     if (this.todoCategory[this.oneIndex].todos) {
-            //         sourceLength = this.todoCategory[this.oneIndex].todos[this.secondIndex].content.length;
-            //     }
-            //     if (this.currentContent.length === 0 || this.currentContent.length === sourceLength) {
-            //         console.log("内容没更新");
-            //     } else {
-            //         if (this.todoList) {
-            //             this.updateTodo.id = this.todoList[this.secondIndex].id;
-            //         }
-            //         this.updateTodo.content = this.currentContent;
-            //
-            //         this.updateTodo.categoryId = this.todoCategory[this.oneIndex].id;
-            //     }
-            // },
             updateFinish(id) {
                 this.$http({
                     url: '/todo-plan/item/' + id + "/is-complete",
